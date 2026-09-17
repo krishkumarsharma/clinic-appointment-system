@@ -1,0 +1,5 @@
+ID,Name,Phone,Email,Age,Gender,BloodGroup,TriageSeverity
+101,Eleanor Vance,+15551234567,eleanor.vance@example.com,29,Female,O+,CRITICAL
+102,Marcus Brody,+15559876543,marcus.brody@example.com,45,Male,A+,HIGH
+103,Sophia Chen,+15554567890,sophia.chen@example.com,34,Female,B+,MEDIUM
+104,Lucas Miller,+15553210987,lucas.miller@example.com,52,Male,AB-,LOW

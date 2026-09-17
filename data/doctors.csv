@@ -1,0 +1,4 @@
+ID,Name,Phone,Email,Specialization,ConsultationFee,AvailableDays
+201,Sarah Jenkins,+15551112233,s.jenkins@clinic.org,Cardiology,150.00,Mon-Wed-Fri
+202,Arjun Mehta,+15554445566,a.mehta@clinic.org,Pediatrics,120.00,Tue-Thu-Sat
+203,Emily Thorne,+15557778899,e.thorne@clinic.org,General Medicine,90.00,Mon-Tue-Wed-Thu-Fri

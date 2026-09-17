@@ -1,0 +1,27 @@
+# Byte-code
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Compilation & Build outputs
+bin/
+target/
+build/
+out/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+
+# Operating System files
+.DS_Store
+Thumbs.db
