@@ -2,14 +2,14 @@
 
 A robust, console-based clinical administration and appointment scheduling system developed in standard Java. The application enables healthcare facilities to streamline patient registration, prioritize emergency cases through clinical triage queuing, eliminate doctor scheduling conflicts, and generate itemized billing invoices with persistent CSV storage.
 
-> 📄 **Academic Documentation**:
+> **Academic Documentation**:
 > - Formal Statement & Scope: [statement.md](statement.md)
 > - Comprehensive Project Report: [PROJECT_REPORT.md](PROJECT_REPORT.md)
 > - PDF Project Report: [PROJECT_REPORT.pdf](PROJECT_REPORT.pdf)
 
 ---
 
-## 📋 Features
+## Features
 
 1. **Patient Registration & Triage**:
    - Register patient profiles with demographic and clinical indicators (Age, Gender, Blood Group, Contact details).
@@ -23,7 +23,7 @@ A robust, console-based clinical administration and appointment scheduling syste
    - Automated conflict detection preventing physician double-booking during identical time slots.
    - Referential integrity checks ensuring both patient and doctor IDs are valid prior to scheduling.
 5. **Clinical Visit Progression**:
-   - Update appointment status (`SCHEDULED` ➔ `COMPLETED` / `CANCELLED`) and record physician outcome notes.
+   - Update appointment status (`SCHEDULED` -> `COMPLETED` / `CANCELLED`) and record physician outcome notes.
 6. **Automated Billing & Invoice Generation**:
    - Generate itemized billing receipts calculating doctor consultation fees plus urgency surcharges.
 7. **Persistent CSV Storage**:
@@ -33,7 +33,7 @@ A robust, console-based clinical administration and appointment scheduling syste
 
 ---
 
-## 🛠️ Technologies & Tools Used
+## Technologies & Tools Used
 
 - **Programming Language**: Java Standard Edition 17+ (Tested on OpenJDK 21)
 - **Architecture**: Three-Tier Layered / MVC-Lite Pattern
@@ -44,7 +44,7 @@ A robust, console-based clinical administration and appointment scheduling syste
 
 ---
 
-## 📂 Project Directory Structure
+## Project Directory Structure
 
 ```
 clinic-appointment-system/
@@ -73,7 +73,7 @@ clinic-appointment-system/
 
 ---
 
-## 🚀 Setup & Execution Guide
+## Setup & Execution Guide
 
 ### 1. Prerequisites
 Ensure a Java Development Kit (JDK 17 or higher) is installed on your operating system:
@@ -101,7 +101,7 @@ java -cp bin com.clinic.Main
 
 ---
 
-## 💻 Menu Overview & Interactive Walkthrough
+## Menu Overview & Interactive Walkthrough
 
 Upon launching the application, you are presented with the main menu:
 
@@ -170,7 +170,7 @@ Payment Status         : PENDING
 
 ---
 
-## 🧪 Automated Testing & Evaluation Compatibility
+## Automated Testing & Evaluation Compatibility
 
 This project is engineered to work reliably with automated evaluation test harnesses and piped standard input:
 ```bash

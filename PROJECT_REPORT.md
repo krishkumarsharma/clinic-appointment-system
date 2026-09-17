@@ -74,7 +74,7 @@ The system is organized into three major functional modules:
 ### Module 1: Patient & Triage Management
 - **FR-01 (Patient Registration)**: Register a patient with unique positive integer ID, name, contact details, age, gender, blood group, and emergency triage severity.
 - **FR-02 (Duplicate ID Protection)**: Disallow registration of duplicate patient IDs.
-- **FR-03 (Triage Priority Queue)**: Automatically sort registered patients based on clinical urgency (`CRITICAL` [Rank 1] ➔ `HIGH` [Rank 2] ➔ `MEDIUM` [Rank 3] ➔ `LOW` [Rank 4]) using Java stream comparators.
+- **FR-03 (Triage Priority Queue)**: Automatically sort registered patients based on clinical urgency (`CRITICAL` [Rank 1] -> `HIGH` [Rank 2] -> `MEDIUM` [Rank 3] -> `LOW` [Rank 4]) using Java stream comparators.
 - **FR-04 (Patient Directory)**: Display tabular patient rosters formatted with ASCII borders.
 
 ### Module 2: Doctor Directory & Specialization Catalog
@@ -496,7 +496,7 @@ Payment Status         : PENDING
 
 ## 13. Learnings & Key Takeaways
 
-- **Object-Oriented Design in Real Domains**: Practical application of inheritance hierarchies (`Person` ➔ `Patient` / `Doctor`) and encapsulation.
+- **Object-Oriented Design in Real Domains**: Practical application of inheritance hierarchies (`Person` -> `Patient` / `Doctor`) and encapsulation.
 - **Defensive Engineering**: Designing input wrappers prevents 100% of common terminal scanner bugs.
 - **Separation of Concerns**: Decoupling persistence (`StorageManager`), business workflows (`ClinicService`), and display logic (`Main`) facilitates modular testing and maintainability.
 
