@@ -1,109 +1,133 @@
-# Healthcare Clinic & Patient Appointment System (CLI)
+# Healthcare Clinic & Patient Appointment System
 
-A robust, console-based clinical administration and appointment scheduling system developed in standard Java. The application enables healthcare facilities to streamline patient registration, prioritize emergency cases through clinical triage queuing, eliminate doctor scheduling conflicts, and generate itemized billing invoices with persistent CSV storage.
+A console-based clinic management system written in Java. This project was developed as part of the Object-Oriented Programming (Java) flipped course curriculum at VIT Bhopal University.
 
-> **Academic Documentation**:
-> - Formal Statement & Scope: [statement.md](statement.md)
-> - Comprehensive Project Report: [PROJECT_REPORT.md](PROJECT_REPORT.md)
-> - PDF Project Report: [PROJECT_REPORT.pdf](PROJECT_REPORT.pdf)
+It provides a clean, dependency-free command-line interface for clinic staff to register patients, manage doctor schedules, prioritize emergency cases through clinical triage, prevent double-bookings, and generate billing invoices with persistent CSV storage.
 
 ---
 
-## Features
+## Author & Project Info
 
-1. **Patient Registration & Triage**:
-   - Register patient profiles with demographic and clinical indicators (Age, Gender, Blood Group, Contact details).
-   - Assign clinical urgency levels (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`).
+- **Student Name**: Krish Kumar
+- **Registration Number**: 25BAI10528
+- **Email**: [krish.25bai10528@vitbhopal.ac.in](mailto:krish.25bai10528@vitbhopal.ac.in)
+- **GitHub**: [@krishkumarsharma](https://github.com/krishkumarsharma)
+- **Institution**: VIT Bhopal University
+- **Course**: Object-Oriented Programming in Java (Flipped Course)
+- **Platform**: VITyarthi Project Submission
+
+### Documentation Links
+- **Project Report**: [PROJECT_REPORT.md](PROJECT_REPORT.md)
+- **Project Scope & Statement**: [statement.md](statement.md)
+- **Compiled PDF Report**: [PROJECT_REPORT.pdf](PROJECT_REPORT.pdf)
+
+---
+
+## Why I Built This
+
+Small clinics and outpatient departments often rely on handwritten logs or scattered spreadsheets to track patients and visits. This frequently results in two major issues:
+1. **Accidental double-booking** of doctors in the same time slot.
+2. **Lack of triage prioritization**, where patients with severe or emergency symptoms wait behind routine check-ups.
+
+This project addresses these problems with a focused, reliable console application that enforces scheduling validation, organizes patients by urgency rank, and keeps all records saved in local CSV files across runs.
+
+---
+
+## Key Features
+
+1. **Patient Intake & Triage Classification**:
+   - Register patient profiles with name, age, contact details, blood group, and emergency triage level (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`).
 2. **Emergency Triage Priority Queue**:
-   - View an automated priority queue dynamically sorted by medical urgency using Java stream comparators.
-3. **Medical Staff Directory**:
-   - Register doctors with medical specializations, consultation rates, and available clinic days.
-   - Filter and search doctors by medical department or specialization keyword.
+   - Automatically sort the patient waiting list based on clinical urgency using Java Stream comparators so emergency patients are addressed first.
+3. **Doctor Directory**:
+   - Add physicians with their specialty, consultation charges, and available working days.
+   - Filter and search doctors by specialization (e.g., Cardiology, Pediatrics, General Medicine).
 4. **Conflict-Free Appointment Scheduling**:
-   - Automated conflict detection preventing physician double-booking during identical time slots.
-   - Referential integrity checks ensuring both patient and doctor IDs are valid prior to scheduling.
-5. **Clinical Visit Progression**:
-   - Update appointment status (`SCHEDULED` -> `COMPLETED` / `CANCELLED`) and record physician outcome notes.
-6. **Automated Billing & Invoice Generation**:
-   - Generate itemized billing receipts calculating doctor consultation fees plus urgency surcharges.
+   - Checks doctor availability before confirming a slot. Rejects any attempt to double-book a physician on the same date and time.
+   - Ensures appointments can only be created for existing patient and doctor IDs.
+5. **Visit Lifecycle & Clinical Notes**:
+   - Update appointment status (`SCHEDULED` &rarr; `COMPLETED` or `CANCELLED`).
+   - Record physician consultation findings and outcome notes upon completion.
+6. **Automated Billing Invoices**:
+   - Computes an itemized receipt combining the doctor's base consultation fee with a triage surcharge ($50 for Critical, $25 for High).
 7. **Persistent CSV Storage**:
-   - Multi-entity serialization to `data/patients.csv`, `data/doctors.csv`, and `data/appointments.csv` with automated sync on every update.
-8. **Crash-Proof Input Validation**:
-   - Universal line-based `Scanner` token parsing preventing buffer desynchronization, numeric errors, and stream EOF termination.
+   - All data is automatically saved to `data/patients.csv`, `data/doctors.csv`, and `data/appointments.csv`, and reloaded whenever the app starts.
+8. **Reliable Input Validation**:
+   - Built with line-based parsing to avoid classic `Scanner` buffer issues (like skipped lines after reading numbers) and handles invalid inputs with clean user prompts.
 
 ---
 
-## Technologies & Tools Used
+## Object-Oriented Concepts Used
 
-- **Programming Language**: Java Standard Edition 17+ (Tested on OpenJDK 21)
-- **Architecture**: Three-Tier Layered / MVC-Lite Pattern
-- **Persistence Engine**: Multi-Entity CSV File Storage with RFC 4180 Escaping
-- **Build & Execution**: Standard JDK command-line tools (`javac`, `java`)
-- **Version Control**: Git & GitHub CLI (`gh`)
-- **Third-Party Dependencies**: **None** (100% Standard Java SE Libraries: `java.util`, `java.io`, `java.util.regex`)
+- **Inheritance**: `Person` serves as an abstract base class containing common attributes (`id`, `name`, `phone`, `email`), extended by `Patient` and `Doctor`.
+- **Encapsulation**: Private fields across all entity models accessed through explicit getters and validated setters.
+- **Polymorphism**: Abstract method `getRole()` in `Person` overridden by `Patient` ("Patient") and `Doctor` ("Doctor").
+- **Enums**: Strongly-typed `TriageSeverity` (with priority ranking and descriptions) and `AppointmentStatus` (`SCHEDULED`, `COMPLETED`, `CANCELLED`).
+- **Collections & Streams**: `LinkedHashMap` used for fast key-based retrieval while maintaining entry order; Java 8 Streams used for sorting triage queues and filtering doctor specialties.
+- **File I/O**: Custom CSV reader and writer handling quote escaping without relying on external dependencies.
 
 ---
 
-## Project Directory Structure
+## Project Structure
 
 ```
 clinic-appointment-system/
 ├── src/
 │   └── com/
 │       └── clinic/
-│           ├── Person.java             # Abstract base model (Inheritance)
-│           ├── Patient.java            # Patient domain model
-│           ├── Doctor.java             # Physician domain model
-│           ├── Appointment.java        # Appointment domain entity
-│           ├── TriageSeverity.java     # Priority level enumeration
-│           ├── AppointmentStatus.java  # Appointment lifecycle enumeration
-│           ├── StorageManager.java     # CSV serialization & persistence engine
-│           ├── ClinicService.java      # Business logic & triage scheduling rules
-│           ├── ValidationUtils.java    # Defensive stream parser & regex validators
-│           └── Main.java               # Interactive console UI & menu loop
-├── data/                               # Persistent flat-file CSV storage
-│   ├── patients.csv                    # Stored patient records
-│   ├── doctors.csv                     # Stored physician records
-│   └── appointments.csv                # Stored appointment schedules
-├── statement.md                        # Official VITyarthi Project Statement
-├── PROJECT_REPORT.md                   # Complete academic project report
-├── README.md                           # Quick-start & operational guide
-└── .gitignore                          # Standard Java ignore rules
+│           ├── Person.java             # Abstract base class
+│           ├── Patient.java            # Patient model (inherits Person)
+│           ├── Doctor.java             # Doctor model (inherits Person)
+│           ├── Appointment.java        # Appointment model
+│           ├── TriageSeverity.java     # Urgency enum (CRITICAL to LOW)
+│           ├── AppointmentStatus.java  # Status enum (SCHEDULED, COMPLETED, CANCELLED)
+│           ├── StorageManager.java     # CSV read/write persistence
+│           ├── ClinicService.java      # Scheduling & business logic
+│           ├── ValidationUtils.java    # Input sanitization and validators
+│           └── Main.java               # Menu loop and CLI interaction
+├── data/
+│   ├── patients.csv                    # Saved patient records
+│   ├── doctors.csv                     # Saved doctor records
+│   └── appointments.csv                # Saved appointments
+├── statement.md                        # Project problem statement
+├── PROJECT_REPORT.md                   # Full academic report
+├── README.md                           # Documentation & quick start
+└── .gitignore                          # Build & OS ignore rules
 ```
 
 ---
 
-## Setup & Execution Guide
+## Getting Started
 
-### 1. Prerequisites
-Ensure a Java Development Kit (JDK 17 or higher) is installed on your operating system:
-```bash
-java -version
-javac -version
-```
+### Requirements
+- **JDK 17 or higher** installed on your system. Verify by running:
+  ```bash
+  java -version
+  javac -version
+  ```
 
-### 2. Navigate to Directory
-```bash
-cd clinic-appointment-system
-```
+### How to Compile and Run
 
-### 3. Compilation
-Compile all Java source files into the `bin/` output directory:
-```bash
-javac -d bin src/com/clinic/*.java
-```
+1. **Clone or navigate into the repository**:
+   ```bash
+   cd clinic-appointment-system
+   ```
 
-### 4. Running the Application
-Launch the compiled CLI system:
-```bash
-java -cp bin com.clinic.Main
-```
+2. **Compile the source code into the `bin` directory**:
+   ```bash
+   javac -d bin src/com/clinic/*.java
+   ```
+
+3. **Run the program**:
+   ```bash
+   java -cp bin com.clinic.Main
+   ```
 
 ---
 
-## Menu Overview & Interactive Walkthrough
+## Sample Menu & Output
 
-Upon launching the application, you are presented with the main menu:
+When you start the application, you will see the interactive menu:
 
 ```
 ==========================================================
@@ -128,9 +152,8 @@ Storage Status: Loaded 4 patient(s), 3 doctor(s), 2 appointment(s).
 Enter your choice (1-10): 
 ```
 
-### Sample Operations
-
-#### 1. Viewing Emergency Triage Priority Queue (Option 3)
+### 1. Emergency Triage Priority Queue (Option 3)
+Patients are automatically sorted by medical urgency:
 ```
 --- [3] Emergency Triage Priority Queue ---
 Patients sorted by medical urgency (CRITICAL -> HIGH -> MEDIUM -> LOW):
@@ -145,7 +168,7 @@ Patients sorted by medical urgency (CRITICAL -> HIGH -> MEDIUM -> LOW):
 Total Patients in Triage: 4
 ```
 
-#### 2. Generating a Clinical Invoice (Option 9)
+### 2. Generating a Billing Invoice (Option 9)
 ```
 --- [9] Generate Patient Billing Invoice ---
 Enter Appointment ID: 501
@@ -170,13 +193,13 @@ Payment Status         : PENDING
 
 ---
 
-## Automated Testing & Evaluation Compatibility
+## Batch Testing & Automated Input
 
-This project is engineered to work reliably with automated evaluation test harnesses and piped standard input:
+The application is designed to be compatible with piped standard input for automated grading:
+
 ```bash
-# Execute automated batch test script
 java -cp bin com.clinic.Main < test_input.txt
 ```
-- **EOF-Proof**: Employs `ValidationUtils.readLineOrNull()` to terminate gracefully upon stream closure without throwing `NoSuchElementException`.
-- **Buffer Safety**: Exclusively uses line parsing (`Scanner.nextLine()`) to prevent newline skipping bugs common in `Scanner.nextInt()`.
-- **Validation Retries**: Handles malformed types (`NumberFormatException`) cleanly with inline re-prompting.
+
+- When end-of-file (EOF) is reached on the input stream, the program saves all current records and exits cleanly without throwing `NoSuchElementException`.
+- All inputs are read line-by-line using `Scanner.nextLine()` to prevent newline-skipping bugs.

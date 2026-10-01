@@ -1,5 +1,10 @@
 # Project Statement: Healthcare Clinic & Patient Appointment System
 
+**Student / Developer**: Krish Kumar (25BAI10528)  
+**Email**: [krish.25bai10528@vitbhopal.ac.in](mailto:krish.25bai10528@vitbhopal.ac.in)  
+**Course**: Object-Oriented Programming in Java (Flipped Course)  
+**Institution**: VIT Bhopal University  
+
 ---
 
 ## 1. Problem Statement
