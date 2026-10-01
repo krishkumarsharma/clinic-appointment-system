@@ -13,7 +13,7 @@ It provides a clean, dependency-free command-line interface for clinic staff to 
 - **Email**: [krish.25bai10528@vitbhopal.ac.in](mailto:krish.25bai10528@vitbhopal.ac.in)
 - **GitHub**: [@krishkumarsharma](https://github.com/krishkumarsharma)
 - **Institution**: VIT Bhopal University
-- **Course**: Object-Oriented Programming in Java (Flipped Course)
+- **Course**: Programming in Java (Flipped Course)
 - **Platform**: VITyarthi Project Submission
 
 ### Documentation Links
